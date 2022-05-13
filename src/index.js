@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './components/Common/common.scss';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
@@ -8,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <div className={'bg-white dark:bg-gray-800 transition-all dark:text-gray-100 p-8 min-h-screen'}>
+      <div className={'bg-white dark:bg-stone-800 transition-all dark:text-gray-100 p-8 min-h-screen'}>
           <App />
       </div>
   </React.StrictMode>
