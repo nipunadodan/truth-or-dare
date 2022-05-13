@@ -8,7 +8,8 @@ const Settings = () => {
     })
 
     useEffect(() => {
-        const settingsStorage = sessionStorage.getItem('td-settings')
+        //TODO: Ask the user for a new session
+        const settingsStorage = localStorage.getItem('td-settings')
         if(settingsStorage){
             setSettings(JSON.parse(settingsStorage))
         }
