@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import questions from "../../assets/data/questions.json"
 import dares from "../../assets/data/dares.json"
 import hello from "../../assets/data/hello.json"
 
 const noOfHellos = hello.length-1
-const noOfQuestions = questions.length-1
+//const noOfQuestions = questions.length-1
 const settings = JSON.parse(localStorage.getItem('td-settings'))
 
 const randomIntFromInterval = (min, max) => { // min and max included
@@ -13,9 +13,17 @@ const randomIntFromInterval = (min, max) => { // min and max included
 
 const Game = () => {
     const salute = hello[randomIntFromInterval(0,noOfHellos)]
-    const question = questions[randomIntFromInterval(0,noOfQuestions)]
+    //const question = questions[randomIntFromInterval(0,noOfQuestions)]
 
     const[player,setPlayer] = useState(1)
+    const[question,setQuestion] = useState(questions[randomIntFromInterval(0,questions.length-1)])
+
+    useEffect(() => {
+        if (question > -1) {
+            questions.splice(question, 1); // 2nd parameter means remove one item only
+        }
+        setQuestion(questions[randomIntFromInterval(0,questions.length-1)])
+    },[player])
 
     const truthSelected = () => {
         setPlayer(player < settings.noOfPlayers ? player+1 : 1)
