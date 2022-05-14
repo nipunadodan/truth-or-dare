@@ -40,7 +40,12 @@ const Game = () => {
                 <p><i className={'text-sm'}>({salute.lang})</i></p>
             </div>
 
-            <h3 className={'my-10 text-5xl md:text-6xl self-center text-center'}>{question.question}</h3>
+            <h3 className={'mt-20 text-5xl md:text-6xl self-center text-center'}>{question.question}</h3>
+            <div id={'feedback'} className={'mt-6 mb-20 self-center'}>
+                <span className={'text-sm'}>Is this a fun question? </span>
+                <button className={'inline-block mx-2 rounded-full border border-green-500 text-green-500 px-2 py-1'}><i className={'la la-thumbs-up'} /> </button>
+                <button className={'inline-block mx-2 rounded-full border border-red-500 text-red-500 px-2 py-1'}><i className={'la la-thumbs-down'} /> </button>
+            </div>
 
             <div className={'self-center'}>
                 <button onClick={truthSelected} className={'inline-block button my-8 border border-red-500 px-10 text-white bg-red-500 hover:bg-red-600'}>Truth</button>

@@ -6,7 +6,7 @@ const Toggle = () => {
 
     return (
         <div
-            className="inline-block transition duration-500 ease-in-out rounded-full py-2 px-6 bg-gray-100 dark:bg-gray-700 cursor-pointer text-gray-500 dark:text-gray-400 text-xl"
+            className="inline-block transition duration-500 ease-in-out rounded-full py-1 px-6 bg-gray-100 dark:bg-gray-700 cursor-pointer text-gray-500 dark:text-gray-400 text-xl"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>
                 {theme === 'dark' ? (
                     <i className="la la-moon" />
