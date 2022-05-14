@@ -1,0 +1,19 @@
+[
+  {"hello": "Hello","lang": "English"},
+  {"hello": "Nǐ hǎo","lang": "Chinese"},
+  {"hello": "Konnichiwa","lang": "Japanese"},
+  {"hello": "Bonjour","lang": "French"},
+  {"hello": "Hola","lang": "Spanish"},
+  {"hello": "Hallo","lang": "German"},
+  {"hello": "Ciao","lang": "Italian"},
+  {"hello": "Namaste","lang": "Hindi"},
+  {"hello": "Namaste","lang": "Hindi"},
+  {"hello": "Olá","lang": "Portuguese"},
+  {"hello": "Asalaam alaikum","lang": "Arabic"},
+  {"hello": "Halløj","lang": "Danish"},
+  {"hello": "Hoi","lang": "Dutch"},
+  {"hello": "Selam","lang": "Turkish"},
+  {"hello": "Shalom","lang": "Hebrew"},
+  {"hello": "Hej","lang": "Swedish"},
+  {"hello": "Hei","lang": "Norwegian"}
+]

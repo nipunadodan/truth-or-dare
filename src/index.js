@@ -9,7 +9,7 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <div className={'bg-white dark:bg-neutral-800 transition-all dark:text-gray-100 p-8 min-h-screen'}>
+      <div className={'bg-white dark:bg-neutral-800 transition-all text-neutral-800 dark:text-gray-100 p-8 min-h-screen'}>
           <App />
       </div>
   </React.StrictMode>
