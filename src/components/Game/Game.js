@@ -47,7 +47,7 @@ const Game = () => {
                 <button className={'inline-block mx-2 rounded-full border border-red-500 text-red-500 px-2 py-1'}><i className={'la la-thumbs-down'} /> </button>
             </div>
 
-            <div className={'self-center'}>
+            <div className={'self-center sticky'}>
                 <button onClick={truthSelected} className={'inline-block button my-8 border border-red-500 px-10 text-white bg-red-500 hover:bg-red-600'}>Truth</button>
                 <button onClick={dareSelected} className={'inline-block button my-8 border border-red-500 px-10 text-white bg-red-500 hover:bg-red-600'}>Dare</button>
             </div>

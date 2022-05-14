@@ -45,10 +45,10 @@ const Settings = () => {
             {
                 settings.ready
                     ? <Game />
-                    : <>
+                    : <section className={'text-center'}>
                         <div className={'py-12'}>
                             How many players do you have?
-                            <div className={'text-center'} style={{padding: '10px'}}>
+                            <div style={{padding: '10px'}}>
                                 <span onClick={() => changePlayerCount('dn')} onMouseDown={avoidSelect}
                                       className={'button button-circular border border-red-500 hover:bg-red-200 dark:hover:bg-red-900 text-red-500'}>-</span>
                                 <span style={{
@@ -61,7 +61,7 @@ const Settings = () => {
                             </div>
                         </div>
                         <div onClick={saveSettings} className={'inline-block button my-8 border border-red-500 px-10 text-white bg-red-500 hover:bg-red-600'}>Next</div>
-                    </>
+                    </section>
             }
         </>
     )
