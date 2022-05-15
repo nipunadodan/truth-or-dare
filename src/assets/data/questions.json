@@ -87,9 +87,6 @@
     "question": "When’s the last time you apologized? What for?"
   },
   {
-    "question": "How do you really feel about the Twilight saga?"
-  },
-  {
     "question": "Where do most of your embarrassing odours come from?"
   },
   {
@@ -126,16 +123,13 @@
     "question": "How many gossip blogs do you read a day?"
   },
   {
-    "question": "What is the youngest age partner you’d date?"
+    "question": "What is the youngest age of a partner you’d date?"
   },
   {
     "question": "Have you ever picked your nose in public?"
   },
   {
     "question": "Have you ever lied about your age?"
-  },
-  {
-    "question": "If you had to delete one app from your phone which one would it be?"
   },
   {
     "question": "What’s your most embarrassing late-night purchase?"
@@ -150,9 +144,6 @@
     "question": "Who’s your hall pass?"
   },
   {
-    "question": "Be honest: Do you have a favourite child?"
-  },
-  {
     "question": "Which of your family members annoys you the most and why?"
   },
   {
@@ -165,13 +156,7 @@
     "question": "What’s the most embarrassing text on your phone right now?"
   },
   {
-    "question": "Have you ever seen a dead body?"
-  },
-  {
-    "question": "What celebrity do you think is overrated?"
-  },
-  {
-    "question": "Have you ever lied to your boss?"
+    "question": "Who in this room do you think is overrated?"
   },
   {
     "question": "Have you ever stolen something from work?"
@@ -187,9 +172,6 @@
   },
   {
     "question": "Describe the weirdest thing you’ve ever done while intoxicated."
-  },
-  {
-    "question": "Have you ever regifted a present?"
   },
   {
     "question": "Would you break up with your partner for $1 million?"
@@ -216,13 +198,10 @@
     "question": "Have you ever ghosted a partner?"
   },
   {
-    "question": "What’s the most scandalous photo in your cloud?"
+    "question": "What’s the most scandalous photo of your in your gallery?"
   },
   {
     "question": "If you switched genders for a day what would you do?"
-  },
-  {
-    "question": "How many photo editing apps do you have on your phone?"
   },
   {
     "question": "How many pairs of granny panties do you own?"
@@ -243,7 +222,7 @@
     "question": "If you had to pick someone in this room to be your partner on a game show who would it be and why?"
   },
   {
-    "question": "Would you date someone shorter than you?"
+    "question": "Would you date someone shorter(F)/taller(M) than you?"
   },
   {
     "question": "Have you ever lied to a friend?"
@@ -627,7 +606,7 @@
     "question": "What’s something you’ve done that you still feel guilty about?"
   },
   {
-    "question": "Have you ever gone/wished going skinny dipping?"
+    "question": "Have you ever gone/wished skinny dipping?"
   },
   {
     "question": "What is the worst date you’ve ever been on?"
@@ -748,5 +727,227 @@
   },
   {
     "question": "If you were rescuing people from a burning building and you had to leave one person behind in this room who would it be?"
+  },
+  {
+    "question": "When was the last time you lied?"
+  },
+  {
+    "question": "What's the worst thing you've ever done at work?"
+  },
+  {
+    "question": "When was the last time you cried?"
+  },
+  {
+    "question": "What's your biggest fear?"
+  },
+  {
+    "question": "What's your biggest fantasy?"
+  },
+  {
+    "question": "Do you have any fetishes?"
+  },
+  {
+    "question": "Who's the last person you searched on Instagram?"
+  },
+  {
+    "question": "What's something you're glad your family doesn't know about you?"
+  },
+  {
+    "question": "Have you ever cheated on someone?"
+  },
+  {
+    "question": "Where's the weirdest place you peed?"
+  },
+  {
+    "question": "What's the worst thing you've ever done?"
+  },
+  {
+    "question": "What's the strangest thing you've ever eaten?"
+  },
+  {
+    "question": "What's your relationship dealbreaker?"
+  },
+  {
+    "question": "What's a secret you've never told anyone?"
+  },
+  {
+    "question": "Do you have a hidden talent?"
+  },
+  {
+    "question": "Who was your first celebrity crush?"
+  },
+  {
+    "question": "What are your thoughts on polyamory?"
+  },
+  {
+    "question": "What's the worst intimate experience you've ever had?"
+  },
+  {
+    "question": "What's the best intimate experience you've ever had?"
+  },
+  {
+    "question": "Have you ever cheated in an exam?"
+  },
+  {
+    "question": "If you were going to be on a reality TV show - which would it be?"
+  },
+  {
+    "question": "What's the drunkest you've ever been?"
+  },
+  {
+    "question": "Have you ever broken the law?"
+  },
+  {
+    "question": "What's the most embarrassing thing you've ever done?"
+  },
+  {
+    "question": "What's your biggest insecurity?"
+  },
+  {
+    "question": "Have you ever stayed friends with someone because it benefitted you beyond just the friendship?"
+  },
+  {
+    "question": "What's the biggest mistake you've ever made?"
+  },
+  {
+    "question": "What's the most disgusting thing you've ever done?"
+  },
+  {
+    "question": "Who would you like to kiss in this room?"
+  },
+  {
+    "question": "What's one thing you hate people knowing about you?"
+  },
+  {
+    "question": "What's the worst thing anyone's ever done to you?"
+  },
+  {
+    "question": "What's the best thing anyone's ever done for you?"
+  },
+  {
+    "question": "Have you ever had a run in with the law?"
+  },
+  {
+    "question": "What's your worst habit?"
+  },
+  {
+    "question": "What's the most embarrassing thing you've done in a taxi?"
+  },
+  {
+    "question": "What's the worst thing you've ever said to anyone?"
+  },
+  {
+    "question": "Have you ever peed in the shower?"
+  },
+  {
+    "question": "What's the strangest dream you've had?"
+  },
+  {
+    "question": "Have you ever been caught doing something you shouldn't have?"
+  },
+  {
+    "question": "What's the worst date you've been on?"
+  },
+  {
+    "question": "What's the best date you've been on?"
+  },
+  {
+    "question": "What happened on the latest night out you've ever had?"
+  },
+  {
+    "question": "What's your biggest regret?"
+  },
+  {
+    "question": "What's the biggest misconception about you?"
+  },
+  {
+    "question": "Have you ever said something you regret about someone in this room?"
+  },
+  {
+    "question": "What's one thing you wish people knew about you?"
+  },
+  {
+    "question": "Where's the weirdest place you've had sex?"
+  },
+  {
+    "question": "Why did your last relationship break down?"
+  },
+  {
+    "question": "Have you ever lied to get out of a bad date?"
+  },
+  {
+    "question": "What's the most trouble you've been in?"
+  },
+  {
+    "question": "When did you last have sex outside?"
+  },
+  {
+    "question": "What's the worst thing you've lied about?"
+  },
+  {
+    "question": "What's one thing you wish you'd lied about?"
+  },
+  {
+    "question": "What's the best piece of advice you've been given?"
+  },
+  {
+    "question": "What's the most you've spent on a night out?"
+  },
+  {
+    "question": "Have you ever returned or re-gifted a present?"
+  },
+  {
+    "question": "Name a time you think you were a bad partner"
+  },
+  {
+    "question": "What's your guilty pleasure?"
+  },
+  {
+    "question": "What's one thing you only do when you're alone?"
+  },
+  {
+    "question": "If you had to get back with an ex - who would you choose?"
+  },
+  {
+    "question": "If you had to cut one friend out of your life - who would it be?"
+  },
+  {
+    "question": "Do you have a favourite friend?"
+  },
+  {
+    "question": "Do you have a favourite sibling?"
+  },
+  {
+    "question": "What's the strangest rumour you've heard about yourself?"
+  },
+  {
+    "question": "What's your biggest turn on?"
+  },
+  {
+    "question": "What's your favourite gross food combination?"
+  },
+  {
+    "question": "What's the silliest reason you've left a club early?"
+  },
+  {
+    "question": "What have you purchased that's been the biggest waste of money?"
+  },
+  {
+    "question": "If you could swap lives with someone in this room - who would it be?"
+  },
+  {
+    "question": "Tell me about your first kiss"
+  },
+  {
+    "question": "What was the most inappropriate time you farted?"
+  },
+  {
+    "question": "What's something you really hope your family never finds out about?"
+  },
+  {
+    "question": "What's the weirdest lie you've ever told?"
+  },
+  {
+    "question": "Do you have any fake social media accounts?"
   }
 ]

@@ -1,56 +1,135 @@
 import React, {useEffect, useState} from "react";
-import questions from "../../assets/data/questions.json"
-import dares from "../../assets/data/dares.json"
+import questionsList from "../../assets/data/questions.json"
+import daresList from "../../assets/data/dares.json"
 import hello from "../../assets/data/hello.json"
+import Modal from "../Common/Modal";
 
 const noOfHellos = hello.length-1
 //const noOfQuestions = questions.length-1
-const settings = JSON.parse(localStorage.getItem('td-settings'))
+
 
 const randomIntFromInterval = (min, max) => { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
 const Game = () => {
-    const salute = hello[randomIntFromInterval(0,noOfHellos)]
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modal, setModal] = useState({
+        title:'',
+        content:'',
+        buttonText:''
+    });
+    const openModal = (modal) => {
+        setModal(modal)
+        setModalIsOpen(true)
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false)
+    }
+
+    //-------------------------//
+
+    const [saluteID, setSaluteID] = useState(randomIntFromInterval(0,noOfHellos))
+    const salute = hello[saluteID]
     //const question = questions[randomIntFromInterval(0,noOfQuestions)]
 
-    const[player,setPlayer] = useState(1)
-    const[question,setQuestion] = useState(questions[randomIntFromInterval(0,questions.length-1)])
+    const [questions, setQuestions] = useState(questionsList)
+    const [dares, setDares] = useState(daresList)
+
+    const [player, setPlayer] = useState(1)
+    const [questionID, setQuestionID] = useState(randomIntFromInterval(0,questions.length-1))
+    const [question, setQuestion] = useState(questions[questionID])
+    const [dareID, setDareID] = useState(randomIntFromInterval(0,dares.length-1));
+    const [dare, setDare] = useState(dares[dareID]);
+
+    const [dareOn,setDareOn] = useState(false)
+    //const [truthOn,setTruthOn] = useState(false)
+
+    // when question ID changes this assigns a new question
+    useEffect(() => {
+        setQuestion(questions[questionID])
+    },[questions, questionID])
+
+    // when dare ID changes this assigns a new dare
+    useEffect(() => {
+        setDare(dares[dareID])
+    },[dares, dareID])
 
     useEffect(() => {
-        if (question > -1) {
-            questions.splice(question, 1); // 2nd parameter means remove one item only
-        }
-        setQuestion(questions[randomIntFromInterval(0,questions.length-1)])
-    },[player])
+        setQuestionID(randomIntFromInterval(0,questions.length-1))
+    },[questions])
+
+    useEffect(() => {
+        setDareID(randomIntFromInterval(0,dares.length-1))
+    },[dares])
 
     const truthSelected = () => {
-        setPlayer(player < settings.noOfPlayers ? player+1 : 1)
+        //setPlayer(player < settings.noOfPlayers ? player+1 : 1)
+        setDareOn(false)
     }
 
     const dareSelected = () => {
-        setPlayer(player < settings.noOfPlayers ? player+1 : 1)
+        setDares(
+            [...dares.slice(0, dareID), ...dares.slice(dareID + 1)]
+        )
+
+        openModal({
+            title:dare.dare,
+            content:'',
+            buttonText:'Next <i class="la la-arrow-right"></i>'
+        })
+
+        setDareOn(false)
     }
+
+    const nextSelected = () => {
+        const settings = JSON.parse(localStorage.getItem('td-settings'))
+        setPlayer(player < settings.noOfPlayers ? player+1 : 1)
+        setSaluteID(randomIntFromInterval(0,noOfHellos))
+
+        setQuestions(
+            [...questions.slice(0, questionID), ...questions.slice(questionID + 1)]
+        )
+        setDareOn(false)
+    }
+
 
     return(
         <section className={'flex justify-center flex-col shrink w-full'}>
+            <Modal isOpen={modalIsOpen} closeModal={closeModal} modal={modal} func={nextSelected}/>
             <div className={'text-left self-center'}>
                 <h2 className={'text-3xl'}>{salute.hello}, Player #{player}</h2>
                 <p><i className={'text-sm'}>({salute.lang})</i></p>
             </div>
+            {
+                typeof question !== 'undefined'
+                ? <>
+                        <h3 className={'mt-20 text-5xl md:text-6xl self-center text-center'}>{question.question}</h3>
+                        <div id={'feedback'} className={'mt-6 mb-20 self-center'}>
+                            <span className={'text-sm'}>Is this a fun question? </span>
+                            <button className={'inline-block mx-2 rounded-full border border-green-500 text-green-500 px-2 py-1'}><i className={'la la-thumbs-up'} /> </button>
+                            <button className={'inline-block mx-2 rounded-full border border-red-500 text-red-500 px-2 py-1'}><i className={'la la-thumbs-down'} /> </button>
+                            <span>#{questionID}/{questions.length}</span>
+                        </div>
+                    </>
+                : <></>
+            }
 
-            <h3 className={'mt-20 text-5xl md:text-6xl self-center text-center'}>{question.question}</h3>
-            <div id={'feedback'} className={'mt-6 mb-20 self-center'}>
-                <span className={'text-sm'}>Is this a fun question? </span>
-                <button className={'inline-block mx-2 rounded-full border border-green-500 text-green-500 px-2 py-1'}><i className={'la la-thumbs-up'} /> </button>
-                <button className={'inline-block mx-2 rounded-full border border-red-500 text-red-500 px-2 py-1'}><i className={'la la-thumbs-down'} /> </button>
-            </div>
 
             <div className={'self-center sticky'}>
-                <button onClick={truthSelected} className={'inline-block button my-8 border border-red-500 px-10 text-white bg-red-500 hover:bg-red-600'}>Truth</button>
-                <button onClick={dareSelected} className={'inline-block button my-8 border border-red-500 px-10 text-white bg-red-500 hover:bg-red-600'}>Dare</button>
+                <button onClick={truthSelected} className={'inline-block button my-8 border border-red-500 px-10 text-red-500 hover:text-white bg-transparent hover:bg-red-600'}>Truth</button>
+                <button onClick={dareSelected} className={'inline-block button my-8 border border-red-500 px-10 text-red-500 hover:text-white bg-transparent hover:bg-red-600'}>Dare</button>
             </div>
+
+            {
+                dareOn
+                ? <div className={'self-center text-center mt-8'}>
+                        <h4 className={'text-center text-3xl md:text-4xl'}>{dare.dare}</h4>
+                        <button onClick={nextSelected} className={'inline-block button my-8 border border-red-500 px-10 text-white bg-red-500 hover:bg-red-600'}>Next</button>
+                    </div>
+                : <></>
+            }
 
         </section>
     )
