@@ -68,7 +68,7 @@ const Game = (props) => {
         //setPlayer(player < settings.noOfPlayers ? player+1 : 1)
         setDareOn(false)
         openModal({
-            title:'It\'s the time for truth',
+            title:'It\'s time for the truth',
             content:'Truth, nothing but the truth',
             buttonText:'Next <i class="la la-arrow-right"></i>'
         })
@@ -111,7 +111,7 @@ const Game = (props) => {
             <div className={'text-left self-center'}>
                 <div className={'flex items-center'}>
                     <h2 className={'text-3xl inline-block'}>{salute.hello}, Player #{player}</h2>
-                    <i onClick={resetGame} className={'la la-redo-alt text-sm button rounded-full border border-gray-500 text-gray-500 px-2 py-1'}/>
+                    <i onClick={resetGame} className={'la la-redo-alt text-sm button rounded-full border border-gray-500 text-gray-500 px-2 py-1 mr-0'}/>
                 </div>
                 <p><i className={'text-sm'}>({salute.lang})</i></p>
             </div>
@@ -123,7 +123,6 @@ const Game = (props) => {
                             <span className={'text-sm'}>Is this a fun question? </span>
                             <button className={'inline-block mx-2 rounded-full border border-green-500 text-green-500 px-2 py-1'}><i className={'la la-thumbs-up'} /> </button>
                             <button className={'inline-block mx-2 rounded-full border border-red-500 text-red-500 px-2 py-1'}><i className={'la la-thumbs-down'} /> </button>
-                            <span>#{questionID}/{questions.length}</span>
                         </div>
                     </>
                 : <></>
