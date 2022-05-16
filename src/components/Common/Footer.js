@@ -3,7 +3,7 @@ import ThemeToggler from "./ThemeToggler";
 
 const Footer = () => {
     return(
-        <footer className={'text-center mb-5'}>
+        <footer className={'text-center mb-24'}>
             <div className={'mt-20 mb-4'}>
                 <ThemeToggler />
             </div>

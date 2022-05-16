@@ -130,7 +130,7 @@ const Game = (props) => {
             }
 
 
-            <div className={'self-center sticky'}>
+            <div className={'self-center actions bg-white dark:bg-neutral-800 drop-shadow-2xl'}>
                 <button onClick={truthSelected} className={'inline-block button my-8 border border-red-500 px-10 text-red-500 hover:text-white bg-transparent hover:bg-red-600'}>Truth</button>
                 <button onClick={dareSelected} className={'inline-block button my-8 border border-red-500 px-10 text-red-500 hover:text-white bg-transparent hover:bg-red-600'}>Dare</button>
             </div>
