@@ -12,7 +12,7 @@ const randomIntFromInterval = (min, max) => { // min and max included
     return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-const Game = () => {
+const Game = (props) => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [modal, setModal] = useState({
         title:'',
@@ -67,6 +67,11 @@ const Game = () => {
     const truthSelected = () => {
         //setPlayer(player < settings.noOfPlayers ? player+1 : 1)
         setDareOn(false)
+        openModal({
+            title:'It\'s the time for truth',
+            content:'Truth, nothing but the truth',
+            buttonText:'Next <i class="la la-arrow-right"></i>'
+        })
     }
 
     const dareSelected = () => {
@@ -94,18 +99,26 @@ const Game = () => {
         setDareOn(false)
     }
 
+    const resetGame = () => {
+        setQuestions(questionsList)
+        props.ready()
+    }
+
 
     return(
         <section className={'flex justify-center flex-col shrink w-full'}>
             <Modal isOpen={modalIsOpen} closeModal={closeModal} modal={modal} func={nextSelected}/>
             <div className={'text-left self-center'}>
-                <h2 className={'text-3xl'}>{salute.hello}, Player #{player}</h2>
+                <div className={'flex items-center'}>
+                    <h2 className={'text-3xl inline-block'}>{salute.hello}, Player #{player}</h2>
+                    <i onClick={resetGame} className={'la la-redo-alt text-sm button rounded-full border border-gray-500 text-gray-500 px-2 py-1'}/>
+                </div>
                 <p><i className={'text-sm'}>({salute.lang})</i></p>
             </div>
             {
                 typeof question !== 'undefined'
                 ? <>
-                        <h3 className={'mt-20 text-5xl md:text-6xl self-center text-center'}>{question.question}</h3>
+                        <h3 className={'mt-20 text-5xl md:text-6xl self-center text-center w-4/5'}>{question.question}</h3>
                         <div id={'feedback'} className={'mt-6 mb-20 self-center'}>
                             <span className={'text-sm'}>Is this a fun question? </span>
                             <button className={'inline-block mx-2 rounded-full border border-green-500 text-green-500 px-2 py-1'}><i className={'la la-thumbs-up'} /> </button>

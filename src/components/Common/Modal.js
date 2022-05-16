@@ -12,7 +12,12 @@ export default function Modal(props) {
     function closeModal() {
         setIsOpen(false)
         props.closeModal(false)
+        //props.func()
+    }
+
+    const actionButton = () => {
         props.func()
+        closeModal()
     }
 
     return (
@@ -53,19 +58,20 @@ export default function Modal(props) {
                             <div className="inline-block w-full max-w-md px-8 py-12 my-8 overflow-hidden text-left align-middle transition-all transform bg-neutral-50 dark:bg-neutral-700 shadow-xl rounded-2xl">
                                 <Dialog.Title
                                     as="h3"
-                                    className="text-3xl md:text-4xl font-medium leading-10 text-gray-900 dark:text-gray-100 text-center mt-8 mb-16"
+                                    className="text-3xl md:text-4xl font-medium leading-10 text-gray-900 dark:text-gray-100 text-center mt-8 mb-4"
                                 >
                                     {props.modal.title}
                                 </Dialog.Title>
-                                <div className="mt-2">
+                                <div className="mt-2 mb-16 text-center">
                                     <div className="text-sm text-gray-700 dark:text-gray-100" dangerouslySetInnerHTML={createMarkup(props.modal.content)} />
                                 </div>
 
                                 <div className="mt-4 text-center">
+                                    <span onClick={closeModal} className={'button text-gray-700 dark:text-gray-100 cursor-pointer'}>Close</span>
                                     <button
                                         type="button"
                                         className="inline-block text-center button border border-red-500 px-10 text-white bg-red-500 hover:bg-red-600"
-                                        onClick={closeModal}
+                                        onClick={actionButton}
                                         dangerouslySetInnerHTML={createMarkup(props.modal.buttonText)}
                                     />
                                 </div>

@@ -40,11 +40,18 @@ const Settings = () => {
         })
     }
 
+    const resetGame = () => {
+        setSettings({
+            ...settings,
+            ready: false
+        })
+    }
+
     return(
         <>
             {
                 settings.ready
-                    ? <Game />
+                    ? <Game ready={resetGame} />
                     : <section className={'text-center'}>
                         <div className={'py-12'}>
                             How many players do you have?
