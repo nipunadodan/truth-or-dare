@@ -1,11 +1,9 @@
 import React, {useEffect, useState} from "react";
-import questionsList from "../../assets/data/questions.json"
-import daresList from "../../assets/data/dares.json"
+
 import hello from "../../assets/data/hello.json"
 import Modal from "../Common/Modal";
 
 const noOfHellos = hello.length-1
-//const noOfQuestions = questions.length-1
 
 
 const randomIntFromInterval = (min, max) => { // min and max included
@@ -29,13 +27,13 @@ const Game = (props) => {
     }
 
     //-------------------------//
-
+    const [settings, setSettings] = useState({})
     const [saluteID, setSaluteID] = useState(randomIntFromInterval(0,noOfHellos))
     const salute = hello[saluteID]
     //const question = questions[randomIntFromInterval(0,noOfQuestions)]
 
-    const [questions, setQuestions] = useState(questionsList)
-    const [dares, setDares] = useState(daresList)
+    const [dares, setDares] = useState([])
+    const [questions, setQuestions] = useState([])
 
     const [player, setPlayer] = useState(1)
     const [questionID, setQuestionID] = useState(randomIntFromInterval(0,questions.length-1))
@@ -45,6 +43,41 @@ const Game = (props) => {
 
     const [dareOn,setDareOn] = useState(false)
     //const [truthOn,setTruthOn] = useState(false)
+
+    const [thanks,setThanks] = useState({
+        status:false,
+        msg:''
+    });
+
+    const api_base = process.env.REACT_APP_API_BASE;
+
+    useEffect(() => {
+        setSettings(
+            JSON.parse(localStorage.getItem('td-settings'))
+        )
+    },[])
+
+    const loadQuestions = () => {
+        fetch(api_base+'questions/all')
+            .then(response => response.json())
+            .then(data => {
+                setQuestions(data)
+            });
+    }
+
+    const loadDares = () => {
+        fetch(api_base+'dares/all')
+            .then(response => response.json())
+            .then(data => {
+                setDares(data)
+            });
+    }
+
+    // load questions and dares
+    useEffect(() => {
+        loadQuestions()
+        loadDares()
+    },[])
 
     // when question ID changes this assigns a new question
     useEffect(() => {
@@ -89,7 +122,6 @@ const Game = (props) => {
     }
 
     const nextSelected = () => {
-        const settings = JSON.parse(localStorage.getItem('td-settings'))
         setPlayer(player < settings.noOfPlayers ? player+1 : 1)
         setSaluteID(randomIntFromInterval(0,noOfHellos))
 
@@ -97,11 +129,43 @@ const Game = (props) => {
             [...questions.slice(0, questionID), ...questions.slice(questionID + 1)]
         )
         setDareOn(false)
+        setThanks({
+            status:false,
+            msg:''
+        });
     }
 
     const resetGame = () => {
-        setQuestions(questionsList)
+        //loadQuestions()
+        //loadDares()
         props.ready()
+    }
+
+
+    const feedBack = (choice, id) => {
+        fetch(api_base+'feedback', {
+            method: 'POST', // or 'PUT'
+            mode:'cors',
+            body: JSON.stringify({
+                choice:choice,
+                id:id,
+                appID:settings.appID
+            }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                setThanks({
+                    status:true,
+                    msg:'Thanks!'
+                });
+            })
+            .catch((error) => {
+                console.log(error)
+                setThanks({
+                    status:true,
+                    msg:'Error occurred'
+                });
+            });
     }
 
 
@@ -121,8 +185,9 @@ const Game = (props) => {
                         <h3 className={'mt-20 text-5xl md:text-6xl self-center text-center w-4/5'}>{question.question}</h3>
                         <div id={'feedback'} className={'mt-6 mb-20 self-center'}>
                             <span className={'text-sm'}>Is this a fun question? </span>
-                            <button className={'inline-block mx-2 rounded-full border border-green-500 text-green-500 px-2 py-1'}><i className={'la la-thumbs-up'} /> </button>
-                            <button className={'inline-block mx-2 rounded-full border border-red-500 text-red-500 px-2 py-1'}><i className={'la la-thumbs-down'} /> </button>
+                            <button onClick={()=>feedBack(1, question.ID)} className={'inline-block mx-2 rounded-full border border-green-500 text-green-500 px-2 py-1'}><i className={'la la-thumbs-up'} /> </button>
+                            <button onClick={()=>feedBack(0, question.ID)} className={'inline-block mx-2 rounded-full border border-red-500 text-red-500 px-2 py-1'}><i className={'la la-thumbs-down'} /> </button>
+                            {thanks.status ? <>{thanks.msg}</> : <></>}
                         </div>
                     </>
                 : <></>

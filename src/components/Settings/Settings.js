@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Game from "../Game/Game";
+import {generateAppID} from "../../Helpers";
 
 const Settings = () => {
     const [settings, setSettings] = useState(JSON.parse(localStorage.getItem('td-settings')) ?? {noOfPlayers:0})
@@ -29,14 +30,15 @@ const Settings = () => {
         })
     }
 
-    const resetSettings = () => {
+    /*const resetSettings = () => {
         localStorage.removeItem('td-settings')
-    }
+    }*/
 
     const saveSettings = () => {
         setSettings({
             ...settings,
-            ready: true
+            ready: true,
+            appID:generateAppID(16),
         })
     }
 
