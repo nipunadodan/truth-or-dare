@@ -44,6 +44,7 @@ const Game = (props) => {
     const [dareOn,setDareOn] = useState(false)
     //const [truthOn,setTruthOn] = useState(false)
 
+    const [feedbackSelect,setFeedbackSelect] = useState('none') //none | up | down
     const [thanks,setThanks] = useState({
         status:false,
         msg:''
@@ -129,6 +130,7 @@ const Game = (props) => {
             [...questions.slice(0, questionID), ...questions.slice(questionID + 1)]
         )
         setDareOn(false)
+        setFeedbackSelect('none')
         setThanks({
             status:false,
             msg:''
@@ -143,6 +145,7 @@ const Game = (props) => {
 
 
     const feedBack = (choice, id) => {
+        setFeedbackSelect(choice ? 'up' : 'down')
         fetch(api_base+'feedback', {
             method: 'POST', // or 'PUT'
             mode:'cors',
@@ -161,9 +164,10 @@ const Game = (props) => {
             })
             .catch((error) => {
                 console.log(error)
+                setFeedbackSelect('none')
                 setThanks({
                     status:true,
-                    msg:'Error occurred'
+                    msg:'Duplicate or Error occurred'
                 });
             });
     }
@@ -185,8 +189,8 @@ const Game = (props) => {
                         <h3 className={'mt-20 text-5xl md:text-6xl self-center text-center w-4/5'}>{question.question}</h3>
                         <div id={'feedback'} className={'mt-6 mb-20 self-center'}>
                             <span className={'text-sm'}>Is this a fun question? </span>
-                            <button onClick={()=>feedBack(1, question.ID)} className={'inline-block mx-2 rounded-full border border-green-500 text-green-500 px-2 py-1'}><i className={'la la-thumbs-up'} /> </button>
-                            <button onClick={()=>feedBack(0, question.ID)} className={'inline-block mx-2 rounded-full border border-red-500 text-red-500 px-2 py-1'}><i className={'la la-thumbs-down'} /> </button>
+                            <button onClick={()=>feedBack(1, question.ID)} className={'inline-block mx-2 rounded-full border border-green-500 '+ (feedbackSelect === 'up' ? 'bg-green-500 text-white' : 'bg-transparent text-green-500') +' px-2 py-1'}><i className={'la la-thumbs-up'} /> </button>
+                            <button onClick={()=>feedBack(0, question.ID)} className={'inline-block mx-2 rounded-full border border-red-500 '+ (feedbackSelect === 'down' ? 'bg-red-500 text-white' : 'bg-transparent text-red-500') +' px-2 py-1'}><i className={'la la-thumbs-down'} /> </button>
                             {thanks.status ? <>{thanks.msg}</> : <></>}
                         </div>
                     </>
