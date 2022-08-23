@@ -27,6 +27,7 @@ const Game = (props) => {
     }
 
     //-------------------------//
+    const [online, setOnline] = useState(false)
     const [settings, setSettings] = useState({})
     const [saluteID, setSaluteID] = useState(randomIntFromInterval(0,noOfHellos))
     const salute = hello[saluteID]
@@ -53,32 +54,53 @@ const Game = (props) => {
     const api_base = process.env.REACT_APP_API_BASE;
 
     useEffect(() => {
+        setOnline(window.navigator.onLine);
         setSettings(
             JSON.parse(localStorage.getItem('td-settings'))
         )
     },[])
 
     const loadQuestions = () => {
-        fetch(api_base+'questions/all')
-            .then(response => response.json())
-            .then(data => {
-                setQuestions(data)
-            });
+        if(online) {
+            fetch(api_base + 'questions/all')
+                .then(response => response.json())
+                .then(data => {
+                    setQuestions(data)
+                    localStorage.setItem('td-questions', JSON.stringify(data))
+                })
+                .catch(()=>{
+                    if(localStorage.getItem('td-questions')){
+                        setQuestions(JSON.parse(localStorage.getItem('td-questions')));
+                    }
+                })
+        }else if(localStorage.getItem('td-questions')){
+            setQuestions(JSON.parse(localStorage.getItem('td-questions')));
+        }
     }
 
     const loadDares = () => {
-        fetch(api_base+'dares/all')
-            .then(response => response.json())
-            .then(data => {
-                setDares(data)
-            });
+        if(online) {
+            fetch(api_base + 'dares/all')
+                .then(response => response.json())
+                .then(data => {
+                    setDares(data)
+                    localStorage.setItem('td-dares', JSON.stringify(data))
+                })
+                .catch(()=>{
+                    if(localStorage.getItem('td-dares')){
+                        setQuestions(JSON.parse(localStorage.getItem('td-dares')));
+                    }
+                })
+        }else if(localStorage.getItem('td-dares')){
+            setDares(JSON.parse(localStorage.getItem('td-dares')));
+        }
     }
 
     // load questions and dares
     useEffect(() => {
         loadQuestions()
         loadDares()
-    },[])
+    },[online])
 
     // when question ID changes this assigns a new question
     useEffect(() => {
